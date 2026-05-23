@@ -7,7 +7,8 @@ document.addEventListener('DOMContentLoaded', () => {
     { value: 'facturas', label: 'Facturas' },
     { value: 'tortas', label: 'Tortas' },
     { value: 'galletas', label: 'Galletas' },
-    { value: 'bizcochos', label: 'Bizcochos' }
+    { value: 'bizcochos', label: 'Bizcochos' },
+        { value: 'alfajores', label: 'Alfajores' }
   ];
 
   const supabase = window.LuneSupabase?.client;

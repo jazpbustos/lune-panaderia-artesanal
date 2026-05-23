@@ -6,7 +6,8 @@ window.LuneProductos = (() => {
     facturas: { label: 'Facturas', emoji: '🥐' },
     tortas: { label: 'Tortas', emoji: '🎂' },
     galletas: { label: 'Galletas', emoji: '🍪' },
-    bizcochos: { label: 'Bizcochos', emoji: '🥨' }
+    bizcochos: { label: 'Bizcochos', emoji: '🥨' },
+        alfajores: { label: 'Alfajores', emoji: '🍰' }
   };
 
   const grid = document.querySelector('#productosGrid');
