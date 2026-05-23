@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lune - Panadería Artesanal</title>
+  <meta name="description" content="Panadería artesanal. Hecho con amor, tradición y los mejores ingredientes." />
+
+<!-- GOOGLE FONTS -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+<link href="https://fonts.googleapis.com/css2?family=Rammetto+One&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Jost:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400;1,500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+
+  <!--ICONS-->
+  <link
+  rel="stylesheet"
+  href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css"
+/>
+</head>
+<body>
+  <nav class="navbar" id="navbar">
+    <div class="navbar__inner">
+      <a href="#hero" class="navbar__logo">
+        <span class="logo-mark">✦</span>
+        <span class="logo-text">Lune</span>
+      </a>
+      <ul class="navbar__links">
+                <li><a href="#inicio" class="nav-link">Inicio</a></li>
+        <li><a href="#productos" class="nav-link">Productos</a></li>
+        <li><a href="#esencia" class="nav-link">Nuestra Esencia</a></li>
+        <li><a href="#especialidades" class="nav-link">Favoritos</a></li>
+        <li><a href="#contacto" class="nav-link">Contacto</a></li>
+      </ul>
+      <button class="navbar__hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="navbar__mobile" id="mobileMenu">
+      <ul>
+        <li><a href="#inicio" class="mobile-link">Inicio</a></li>
+        <li><a href="#productos" class="mobile-link">Productos</a></li>
+        <li><a href="#esencia" class="mobile-link">Nuestra Esencia</a></li>
+        <li><a href="#especialidades" class="mobile-link">Favoritos</a></li>
+        <li><a href="#contacto" class="mobile-link">Contacto</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="hero" id="inicio">
+    <div class="hero__bg">
+      <div class="hero__grain"></div>
+      <div class="hero__overlay"></div>
+    </div>
+    <div class="hero__content">
+      <img 
+  src="assets/img/medialuna.png" 
+  alt="Medialuna artesanal"
+  class="hero__medialuna"
+/>
+      <p class="hero__eyebrow reveal-up">Panadería Artesanal</p>
+<h1 class="hero__title reveal-up delay-1">
+  <span class="hero-main">Lune</span><br />
+    <span class="hero-star">✦</span>
+  bakery
+</h1>
+<p class="hero__subtitle reveal-up delay-2">
+  Recién salido del horno.
+</p>
+      <div class="hero__actions reveal-up delay-3">
+        <a href="#productos" class="btn btn--primary">Explorar Productos</a>
+        <a href="#esencia" class="btn btn--ghost">Nuestra Esencia</a>
+      </div>
+    </div>
+
+  </section>
+
+<div class="ticker-band" aria-hidden="true">
+  <div class="ticker-track">
+    <span>Panadería Artesanal</span><span class="sep">✦</span>
+    <span>Sabor Recién Horneado</span><span class="sep">✦</span>
+    <span>Pastelería Fina</span><span class="sep">✦</span>
+    <span>Ingredientes Seleccionados</span><span class="sep">✦</span>
+    <span>Hecho con Amor</span><span class="sep">✦</span>
+
+    <span>Panadería Artesanal</span><span class="sep">✦</span>
+    <span>Sabor Recién Horneado</span><span class="sep">✦</span>
+    <span>Pastelería Fina</span><span class="sep">✦</span>
+    <span>Ingredientes Seleccionados</span><span class="sep">✦</span>
+    <span>Hecho con Amor</span><span class="sep">✦</span>
+  </div>
+</div>
+
+  <section class="section productos" id="productos">
+    <div class="container">
+      <div class="section-header">
+<p class="section-eyebrow">Nuestra carta</p>
+
+<h2 class="section-title">
+  Nuestros Productos
+</h2>
+
+<p class="section-desc">
+  Panes, pastelería y piezas artesanales elaboradas con ingredientes seleccionados y dedicación en cada detalle.
+</p>    </div>
+
+<div class="productos__controls">
+  <input id="productosSearch" placeholder="Buscar productos..." />
+
+  <select id="productosSort">
+    <option value="recent">Más recientes</option>
+    <option value="price_asc">Precio menor</option>
+    <option value="price_desc">Precio mayor</option>
+    <option value="name">Nombre</option>
+  </select>
+
+  <button id="clearFilters" class="filters-clear-btn">
+    <span aria-hidden="true">×</span>
+    <span class="sr-only">Limpiar filtros</span>
+  </button>
+</div>
+
+      <div class="productos__filters" id="productFilters">
+<button class="filter-btn active" data-filter="all">Todos</button>
+<button class="filter-btn" data-filter="dulce">Dulce</button>
+<button class="filter-btn" data-filter="salado">Salado</button>
+<button class="filter-btn" data-filter="panes">Panes</button>
+<button class="filter-btn" data-filter="facturas">Facturas</button>
+<button class="filter-btn" data-filter="tortas">Tortas</button>
+<button class="filter-btn" data-filter="galletas">Galletas</button>
+<button class="filter-btn" data-filter="bizcochos">Bizcochos</button>
+</div>
+
+<div class="productos__grid" id="productosGrid">
+  <!-- skeleton SOLO cuando carga -->
+  <div class="product-card skeleton"></div>
+  <div class="product-card skeleton"></div>
+  <div class="product-card skeleton"></div>
+  <div class="product-card skeleton"></div>
+  <div class="product-card skeleton"></div>
+  <div class="product-card skeleton"></div>
+</div>
+
+      <div class="productos__empty hidden" id="productosEmpty">
+        <p>✦ No hay productos en esta categoría aún.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section esencia" id="esencia">
+<div class="esencia__layout">
+
+  <!-- COLUMNA IZQUIERDA -->
+  <div class="esencia__visual">
+    <div class="esencia__img-frame">
+      <img
+        src="assets/img/nuestra_esencia_bakery (2).png"
+        alt="Nuestra esencia Lune Bakery"
+        class="esencia__img"
+      />
+    </div>
+  </div>
+
+  <!-- COLUMNA DERECHA -->
+      <div class="esencia__content">
+        <p class="section-eyebrow">Lo que nos define</p>
+        <h2 class="section-title">Nuestra Esencia</h2>
+        <p class="esencia__lead">  Sabor real en cada detalle.</p>
+<p class="esencia__text">
+  En Lune cada elaboración nace del cuidado por los detalles, los buenos ingredientes y el placer de compartir algo recién horneado.
+</p>
+<div class="esencia__pillars">
+  <div class="pillar">
+    <span class="pillar__icon">🌾</span>
+    <h4>Ingredientes nobles</h4>
+    <p>Seleccionados para lograr sabor, <br>aroma y textura real.</p>
+  </div>
+
+  <div class="pillar">
+    <span class="pillar__icon">🥐</span>
+    <h4>Hecho cada día</h4>
+    <p>Producción fresca y artesanal <br>en cada horneada.</p>
+  </div>
+
+  <div class="pillar">
+    <span class="pillar__icon">☕</span>
+    <h4>Momentos simples</h4>
+    <p>Porque compartir algo rico <br>también forma parte del ritual.</p>
+  </div>
+</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section especialidades" id="especialidades">
+    <div class="container">
+      <div class="section-header">
+ <p class="section-eyebrow">Selección Lune</p>
+
+<h2 class="section-title">
+  Favoritos de la Casa
+</h2>
+
+<p class="section-desc">
+  Una selección especial de productos artesanales elegidos por su sabor, textura y esencia.
+</p>
+      </div>
+      <div class="especialidades__grid" id="especialidadesGrid">
+        <div class="especialidad-card skeleton"></div>
+        <div class="especialidad-card skeleton"></div>
+        <div class="especialidad-card skeleton"></div>
+      </div>
+      <div class="productos__empty hidden" id="especialidadesEmpty">
+        <p>✦ No hay productos destacados aún.</p>
+      </div>
+<div class="especialidades__horario">
+
+  <div class="horario-header">
+    <p class="section-eyebrow">Visítanos</p>
+    <h2 class="horario-title">Horarios</h2>
+  </div>
+
+  <div class="horario-content">
+
+    <div class="horario-item">
+      <span class="horario-dia">Lunes - Viernes</span>
+      <span class="horario-hora">7:00 - 20:00</span>
+    </div>
+
+    <div class="horario-sep">|</div>
+
+    <div class="horario-item">
+      <span class="horario-dia">Sábados</span>
+      <span class="horario-hora">7:00 - 14:00</span>
+    </div>
+
+    <div class="horario-sep">|</div>
+
+    <div class="horario-item">
+      <span class="horario-dia">Domingos</span>
+      <span class="horario-hora">8:00 - 13:00</span>
+    </div>
+
+  </div>
+
+</div>
+    </div>
+  </section>
+
+  <section class="section testimonios" id="testimonios">
+    <div class="container">
+      <div class="section-header centered">
+        <p class="section-eyebrow">Voces de nuestros clientes</p>
+        <h2 class="section-title">Sabores que acompañan</h2>
+      </div>
+      <div class="testimonios__track" id="testimoniosTrack">
+        <article class="testimonio-card">
+          <div class="testimonio__stars">★★★★★</div>
+          <p class="testimonio__text"> "Las medialunas siempre llegan tibias y con el punto justo de manteca. Se volvieron mi desayuno fijo."</p>
+          <div class="testimonio__author"><div class="author-avatar">AM</div><div><strong>Ana M.</strong><span>Cliente frecuente</span></div></div>
+        </article>
+        <article class="testimonio-card">
+          <div class="testimonio__stars">★★★★★</div>
+          <p class="testimonio__text">"Los chipás son un peligro. Pedís un cuarto y cuando te das cuenta desaparecieron."</p>
+          <div class="testimonio__author"><div class="author-avatar">JC</div><div><strong>Jorge C.</strong><span>Cliente frecuente</span></div></div>
+        </article>
+        <article class="testimonio-card">
+          <div class="testimonio__stars">★★★★★</div>
+          <p class="testimonio__text">"Probé el pan de masa madre y los bizcochos de salame. Todo súper fresco y con sabor casero de verdad."</p>
+          <div class="testimonio__author"><div class="author-avatar">LP</div><div><strong>Laura P.</strong><span>Cliente frecuente</span></div></div>
+        </article>
+                <article class="testimonio-card">
+          <div class="testimonio__stars">★★★★★</div>
+          <p class="testimonio__text">"Fui por pan y terminé obsesionada con las cookies."</p>
+          <div class="testimonio__author"><div class="author-avatar">JD</div><div><strong>Julia D.</strong><span>Cliente frecuente</span></div></div>
+        </article>
+      </div>
+      <div class="testimonios__dots" id="testimoniosDots"></div>
+    </div>
+  </section>
+
+<section class="section contacto" id="contacto">
+
+  <div class="contacto__layout">
+
+    <!-- MAPA -->
+    <div class="contacto__map">
+
+      <iframe
+        src="https://www.google.com/maps?q=Sarmiento+2464+Esperanza+Santa+Fe&output=embed"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+
+    </div>
+
+    <!-- INFO -->
+    <div class="contacto__info">
+
+      <p class="section-eyebrow">
+        Visítanos
+      </p>
+
+      <h2 class="section-title">
+        Contacto
+      </h2>
+
+      <p class="contacto__desc">
+        Un espacio cálido donde el aroma a pan recién horneado
+        <br>siempre te recibe primero.
+      </p>
+
+      <div class="contacto__items">
+
+        <div class="contacto__item">
+
+          <div class="contacto__icon">
+            <i class="ph ph-map-pin"></i>
+          </div>
+
+          <div>
+            <strong>Dirección</strong>
+            <span>Sarmiento 2464 · Esperanza, Santa Fe</span>
+          </div>
+
+        </div>
+
+        <div class="contacto__item">
+
+          <div class="contacto__icon">
+            <i class="ph ph-phone"></i>
+          </div>
+
+          <div>
+            <strong>Teléfono</strong>
+            <span>+54 3496 12-3456</span>
+          </div>
+
+        </div>
+
+        <div class="contacto__item">
+
+          <div class="contacto__icon">
+            <i class="ph ph-envelope-simple"></i>
+          </div>
+
+          <div>
+            <strong>Email</strong>
+            <span>contacto@lunebakery.com</span>
+          </div>
+
+        </div>
+
+<div class="contacto__item">
+
+  <div class="contacto__icon">
+    <i class="ph ph-clock"></i>
+  </div>
+
+  <div>
+    <strong>Horarios</strong>
+
+    <span>
+      Lun - Vie · 7:00 a 20:00
+      <br>
+      Sábados · 7:00 a 14:00
+      <br>
+      Domingos · 8:00 a 13:00
+    </span>
+  </div>
+
+</div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<footer class="footer">
+
+  <div class="footer__inner">
+
+    <!-- BRAND -->
+    <div class="footer__brand">
+
+      <a href="#inicio" class="footer__logo">
+        <span class="logo-mark">✦</span>
+        <span class="logo-text">Lune</span>
+      </a>
+
+
+    </div>
+
+    <!-- SOCIAL -->
+    <div class="footer__social">
+
+      <a href="#" class="social-link" aria-label="Instagram">
+        <i class="ph ph-instagram-logo"></i>
+      </a>
+
+      <a href="#" class="social-link" aria-label="Facebook">
+        <i class="ph ph-facebook-logo"></i>
+      </a>
+
+      <a href="#" class="social-link" aria-label="WhatsApp">
+        <i class="ph ph-whatsapp-logo"></i>
+      </a>
+
+    </div>
+
+  </div>
+
+  <!-- BOTTOM -->
+  <div class="footer__bottom">
+
+    <p>
+      © 2026 Lune. Todos los derechos reservados.
+    </p>
+
+
+    <p> <a href="https://www.linkedin.com/in/jazminpbustos/" target="_blank" rel="noopener noreferrer">Diseño y desarrollo por Jazmin Bustos</a></p>
+    <a href="admin/admin.html" class="footer__admin">
+     ✦ Admin
+    </a>
+
+  </div>
+
+</footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="/assets/js/config.js"></script>
+  <script src="/assets/js/supabase.js"></script>
+  <script src="/assets/js/productos.js"></script>
+  <script src="/assets/js/ui.js"></script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>

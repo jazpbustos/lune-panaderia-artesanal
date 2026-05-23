@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin - Lune</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Rammetto+One&family=Playfair+Display:wght@600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="../assets/css/styles.css" />
+  <link rel="stylesheet" href="admin.css" />
+</head>
+<body class="admin-body">
+  <div class="login-screen" id="loginScreen">
+    <div class="login-card">
+      <div class="login-logo">
+        <span class="logo-mark">✦</span>
+        <span class="login-logo__text">Lune</span>
+      </div>
+      <h1 class="login-title">Panel de Administración</h1>
+      <p class="login-sub">Acceso exclusivo para el equipo de Lune.</p>
+
+      <form class="login-form" id="loginForm" novalidate>
+        <div class="form-group">
+          <label for="loginEmail">Correo electrónico</label>
+          <input type="email" id="loginEmail" placeholder="user@example.com" required />
+        </div>
+        <div class="form-group">
+          <label for="loginPassword">Contraseña</label>
+          <input type="password" id="loginPassword" placeholder="••••••••" required />
+        </div>
+        <div class="login-error hidden" id="loginError"></div>
+        <button type="submit" class="btn btn--primary btn--full" id="loginBtn">
+          <span>Ingresar</span>
+        </button>
+      </form>
+
+      <a href="../index.html" class="login-back">← Volver a la web</a>
+    </div>
+  </div>
+
+  <div class="dashboard hidden" id="dashboard">
+    <aside class="sidebar">
+      <div class="sidebar__brand">
+        <span class="logo-mark">✦</span>
+        <span class="sidebar__brand-text">Lune</span>
+      </div>
+      <nav class="sidebar__nav">
+        <button class="sidebar__link active" data-view="productos">
+          <span class="sidebar__icon">🍞</span>
+          <span>Productos</span>
+        </button>
+        <button class="sidebar__link" data-view="nuevo">
+          <span class="sidebar__icon">＋</span>
+          <span>Nuevo Producto</span>
+        </button>
+      </nav>
+      <div class="sidebar__footer">
+        <span class="sidebar__user" id="sidebarUser">-</span>
+        <button class="sidebar__logout" id="logoutBtn">Cerrar Sesión</button>
+      </div>
+    </aside>
+
+    <main class="admin-main">
+      <section class="admin-view" id="viewProductos">
+        <div class="admin-view__header">
+          <div>
+            <h2>Productos</h2>
+            <p>Gestiona el catálogo de Lune.</p>
+          </div>
+          <button class="btn btn--primary" id="btnNuevoProducto">+ Nuevo Producto</button>
+        </div>
+
+        <div class="admin-filters">
+          <select id="adminFiltroCategoria">
+            <option value="all">Todas las categorías</option>
+          </select>
+          <input type="text" id="adminBusqueda" placeholder="Buscar producto..." />
+        </div>
+
+        <div class="admin-table-wrap">
+          <table class="admin-table" id="adminTable">
+            <thead>
+              <tr>
+                <th>Imagen</th>
+                <th>Título</th>
+                <th>Categoría</th>
+                <th>Precio</th>
+                <th>Destacado</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="adminTableBody"></tbody>
+          </table>
+          <div class="admin-table-empty hidden" id="adminTableEmpty">
+            No hay productos aún. ¡Agrega el primero!
+          </div>
+          <div class="admin-table-loading" id="adminTableLoading">
+            <div class="spinner"></div>
+            Cargando productos...
+          </div>
+        </div>
+      </section>
+
+      <section class="admin-view hidden" id="viewFormulario">
+        <div class="admin-view__header">
+          <div>
+            <h2 id="formTitle">Nuevo Producto</h2>
+            <p id="formSubtitle">Completa los datos del producto.</p>
+          </div>
+          <button class="btn btn--ghost" id="btnCancelar">← Cancelar</button>
+        </div>
+
+        <form class="producto-form" id="productoForm" novalidate>
+          <input type="hidden" id="productoId" />
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="pTitulo">Título del producto *</label>
+              <input type="text" id="pTitulo" placeholder="Ej: Medialuna dulce" required />
+            </div>
+            <div class="form-group">
+              <label for="pPrecio">Precio (ARS) *</label>
+              <input type="number" id="pPrecio" placeholder="Ej: 1200" min="0" step="0.01" required />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="pCategoria">Categoría *</label>
+              <div class="category-checks" id="pCategorias">
+              </div>
+              <span class="form-hint">Podés elegir más de una categoría.</span>
+            </div>
+            <div class="form-group form-group--checkbox">
+              <label class="checkbox-label">
+                <input type="checkbox" id="pDestacado" />
+                <span class="checkbox-custom"></span>
+                <span>Marcar como destacado (aparece en Favoritos de la casa)</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="pDescripcion">Descripción</label>
+            <textarea id="pDescripcion" rows="4" placeholder="Describe el producto: ingredientes, textura, sabor..."></textarea>
+          </div>
+
+          <div class="form-group">
+            <label>Imagen del producto</label>
+            <div class="img-uploader" id="imgUploader">
+              <div class="img-preview" id="imgPreview">
+                <span class="img-placeholder-icon">📷</span>
+                <span>Haz click o arrastra una imagen aquí</span>
+                <span class="img-hint">JPG, PNG, WebP - máx. 5MB</span>
+              </div>
+              <input type="file" id="imgInput" accept="image/jpeg,image/png,image/webp,image/avif" class="sr-only" />
+            </div>
+            <input type="hidden" id="pImagenUrl" />
+            <div class="upload-progress hidden" id="uploadProgress">
+              <div class="upload-progress__bar" id="uploadProgressBar"></div>
+              <span id="uploadProgressText">Subiendo...</span>
+            </div>
+          </div>
+
+          <div class="form-error-banner hidden" id="formError"></div>
+
+          <div class="form-actions">
+            <button type="button" class="btn btn--ghost" id="btnCancelar2">Cancelar</button>
+            <button type="submit" class="btn btn--primary" id="saveBtn">
+              <span id="saveBtnText">Guardar Producto</span>
+            </button>
+          </div>
+        </form>
+      </section>
+    </main>
+  </div>
+
+  <div class="modal-overlay hidden" id="deleteModal">
+    <div class="modal">
+      <h3>¿Eliminar producto?</h3>
+      <p>Esta acción no se puede deshacer. El producto y su imagen serán eliminados permanentemente.</p>
+      <div class="modal__actions">
+        <button class="btn btn--ghost" id="deleteCancelBtn">Cancelar</button>
+        <button class="btn btn--danger" id="deleteConfirmBtn">Sí, eliminar</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../assets/js/config.js"></script>
+  <script src="../assets/js/supabase.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>
